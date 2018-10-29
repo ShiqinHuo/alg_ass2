@@ -139,14 +139,12 @@ class MST {
     {
         // This will store the resulting MST
         Edge[] mst= new Edge[N];
-//        System.out.println("the value of N is: "+ N);
 
         for (int i = 0; i< N-1; i++)
             // to store the final mst
             mst[i] = new Edge(0,0,0);
 
         // sorting the edges, num == N(N-1)/2 for complete graph
-//        System.out.println("length of edges:  "+ edges.length);
         Arrays.sort(edges);
 
         // Object for Disjoint_Set ------------------------------------------------------
@@ -156,9 +154,6 @@ class MST {
         int e = 0;
 
         while (i < N-1) {
-
-
-//            System.out.println(edges[e].toString());
 
             Edge current_edge = edges[e];
 
@@ -235,64 +230,59 @@ class MST {
 
         int sizes[] = {100,500,1000};
 
-//        /** Q1_a Implementation begins----------------------------------------------------------
-//         */
-//        for(int s =0; s<sizes.length;s++){
-//
-//            double testWeight_Q1a = 0.0;
-//            long testTime_Q1a = (long) 0.0;
-//
-//
-//            for (int d=0; d<50;d++) {
-//                //System.out.println(d);
-//                int N = sizes[s]; // Input number of vertices
-//                int E = N * (N - 1) / 2; // Number of edges in complete graph
-//                MST graph = new MST(N, E);
-//
-//                // Initialize the ArrayList of Points Objects
-//                Vertices V = new Vertices();
-//
-//                // Assign the position for all vertices
-//                for (int k = 0; k < N; k++) {
-//                    V.addPos(k);}
-//
-//                int t = 0; // t_th edge
-//                double[][] w_matrix = new double[N][N]; // matrix to store
-//
-//                // Q1_a Complete Graph Initialization
-//                // Fill the matrix to represent the graph
-//                for (int i = 0; i < N; i++) { // src = i
-//                    for (int j = i; j < N; j++) { // dest = j
-//                        if (i == j) {
-//                            w_matrix[i][j] = 999;}
-//                        else {
-//                            graph.edges[t].src = i;
-//                            graph.edges[t].dest = j;
-//                            double w = Math.sqrt(Math.pow(V.getPosX(i) - V.getPosX(j), 2) + Math.pow(V.getPosY(i) - V.getPosY(j), 2));
-//                            graph.edges[t].weight = w;
-//                            w_matrix[i][j] = w; // w_matrix[src][dest] = weight
-//                            t++;}
-//                    }
-//                }
-//
-//                // Timing for Q1_a
-//                long startTime_Q1a = System.nanoTime();
-//                testWeight_Q1a+=graph.KruskalMST();
-//                long endTime_Q1a = System.nanoTime();
-//                testTime_Q1a +=(endTime_Q1a - startTime_Q1a);
-//
-//            }
-//
-//            averageWeight_Q1a[s] = testWeight_Q1a/50;
-//            averageRunTime_Q1a[s] =  testTime_Q1a/50;
-//        }
-//
-//        for(int s =0; s<sizes.length;s++){
-//            System.out.println("Complete Graph Size: "+ sizes[s] + " with an average Weight: "+averageWeight_Q1a[s]);
-//        }
-//        for(int s =0; s<sizes.length;s++){
-//            System.out.println("Complete Graph Size: "+ sizes[s] + " with an average RunTime: "+averageRunTime_Q1a[s]);
-//        }
+        /** Q1_a Implementation begins----------------------------------------------------------
+         */
+        for(int s =0; s<sizes.length;s++){
+
+            double testWeight_Q1a = 0.0;
+            long testTime_Q1a = (long) 0.0;
+
+
+            for (int d=0; d<50;d++) {
+                //System.out.println(d);
+                int N = sizes[s]; // Input number of vertices
+                int E = N * (N - 1) / 2; // Number of edges in complete graph
+                MST graph = new MST(N, E);
+
+                // Initialize the ArrayList of Points Objects
+                Vertices V = new Vertices();
+
+                // Assign the position for all vertices
+                for (int k = 0; k < N; k++) {
+                    V.addPos(k);}
+
+                int t = 0; // t_th edge
+                double[][] w_matrix = new double[N][N]; // matrix to store
+
+                // Q1_a Complete Graph Initialization
+                // Fill the matrix to represent the graph
+                for (int i = 0; i < N; i++) { // src = i
+                    for (int j = i; j < N; j++) { // dest = j
+                        if (i == j) {
+                            w_matrix[i][j] = 999;}
+                        else {
+                            graph.edges[t].src = i;
+                            graph.edges[t].dest = j;
+                            double w = Math.sqrt(Math.pow(V.getPosX(i) - V.getPosX(j), 2) + Math.pow(V.getPosY(i) - V.getPosY(j), 2));
+                            graph.edges[t].weight = w;
+                            w_matrix[i][j] = w; // w_matrix[src][dest] = weight
+                            t++;}
+                    }
+                }
+
+                // Timing for Q1_a
+                long startTime_Q1a = System.nanoTime();
+                testWeight_Q1a+=graph.KruskalMST();
+                long endTime_Q1a = System.nanoTime();
+                testTime_Q1a +=(endTime_Q1a - startTime_Q1a);
+
+            }
+
+            averageWeight_Q1a[s] = testWeight_Q1a/50;
+            averageRunTime_Q1a[s] =  testTime_Q1a/50;
+            System.out.println("Complete Graph Size: "+ sizes[s] + " with an average Weight: "+averageWeight_Q1a[s]);
+            System.out.println("Complete Graph Size: "+ sizes[s] + " with an average RunTime: "+averageRunTime_Q1a[s]);
+        }
 
         /** Q1_c Implementation begins--------------------------------------------------------------------
         */
@@ -324,8 +314,8 @@ class MST {
 
                 /** Q1_c Random Connected Graph Initialization-------------------------------------------------
                  */
-                // Adjacency list representation of graph
 
+                // Adjacency list representation of graph --------------
                 LinkedList<Integer>[] AdjList = new LinkedList[N];
                 ArrayList<Edge> pickedEdges = new ArrayList<Edge>();
 
@@ -333,10 +323,9 @@ class MST {
                     AdjList[i] = new LinkedList<>();
                 }
 
-                // Initialize flag boolean
+                // Initialize flag boolean ------------------------------
                 Boolean unconnected = true;
-
-                int count = 0; // count variable to track current available edges (no dup, min -> max)
+                // Initialize disjoint sets -----------------------------
                 Disjoint_Set sets = new Disjoint_Set(N);
 
                 while (unconnected) {
@@ -359,11 +348,7 @@ class MST {
                         AdjList[node1_index].add(node2_index);
                         AdjList[node2_index].add(node1_index);
 
-
                         sets.Union(node1_index, node2_index);
-//                        System.out.println("below is connected 2 nodes: ");
-//                        System.out.println("node1_index: "+node1_index);
-//                        System.out.println("node2_index: "+node2_index);
 
                         int min = Math.min(node1_index, node2_index);
                         int max = Math.max(node1_index, node2_index);
@@ -378,26 +363,13 @@ class MST {
                         /** traversal for the graph_C ---------  check whether this graph is connected
                          */
                         for (int m = 1; m < AdjList.length; m++) {
-//                            System.out.println("parent of  " + m + " is "+ sets.find_set(m));
                             // if there is one group root is not the first root --> unconnected --> repeated while loop
                             if (sets.find_set(m) != first_root) {
-//                                System.out.println("value of m is "+ m);
-
-//                                System.out.println("parent of  "+ m +" is " + sets.find_set(m) + "  the first parent: "+ first_root);
-//                                //System.out.println(sets.find_set(1)+ " ssssssssssss "+ sets.find_set(4));
-//                                System.out.println(AdjList[0]);
-//                                System.out.println(AdjList[1]);
-//                                System.out.println(AdjList[2]);
-//                                System.out.println(AdjList[3]);
-//                                System.out.println(AdjList[4]);
-                                //System.out.println("value of m is "+ m);
                                 unconnected_src++;
                                 // continue;
                                 // the graph is still unconnected
                             }
                         }
-
-//                            System.out.println("after checked: "+unconnected);
                         HashSet set = new HashSet();
 
                         for (int num = 0; num < AdjList.length; num++){
@@ -408,20 +380,6 @@ class MST {
                         int numVisited = set.size();
 
                         if (unconnected_src == 0 && numVisited == N) {
-//                            System.out.println("hahahhahahah connected!!");
-//                            // CHECK THE PARENT FOR ALL
-//                            System.out.println("PARENT of 0: "+ sets.find_set(0));
-//                            System.out.println("PARENT of 1: "+ sets.find_set(1));
-//                            System.out.println("PARENT of 2: "+ sets.find_set(2));
-//                            System.out.println("PARENT of 3: "+ sets.find_set(3));
-//                            System.out.println("PARENT of 4: "+ sets.find_set(4));
-//
-//                            System.out.println(AdjList[0]);
-//                            System.out.println(AdjList[1]);
-//                            System.out.println(AdjList[2]);
-//                            System.out.println(AdjList[3]);
-//                            System.out.println(AdjList[4]);
-
                             // all src connected
                             unconnected = false; // break;
                         }
@@ -470,20 +428,6 @@ class MST {
             System.out.println("Random Connected Graph Size: "+ sizes[s] + " Prim's average RunTime: "+ P_averRunTime_Q1c[s]);
             System.out.println("Random Connected Graph Size: "+ sizes[s] + " Prim's average Weight: "+ P_averWeight_Q1c[s]);
         }
-
-
-//        for(int s =0; s<sizes.length;s++){
-//            System.out.println("Random Connected Graph Size: "+ sizes[s] + "Kruskal's average RunTime: "+ K_averRunTime_Q1c[s]);
-//        }
-////        for(int s =0; s<sizes.length;s++){
-////            System.out.println("Random Connected Graph Size: "+ sizes[s] + "Prim's average RunTime: "+ P_averRunTime_Q1c[s]);
-////        }
-//        for(int s =0; s<sizes.length;s++){
-//            System.out.println("Random Connected Graph Size: "+ sizes[s] + " Kruskal's average Weight: "+ K_averWeight_Q1c[s]);
-//        }
-////        for(int s =0; s<sizes.length;s++){
-////            System.out.println("Random Connected Graph Size: "+ sizes[s] + " Prim's average Weight: "+ P_averWeight_Q1c[s]);
-////        }
 
     }
 }
