@@ -193,21 +193,21 @@ class MST {
 
         // mark the starting node as visited, assuming always start from the 0 vertex
         visited[0] = true;
-
-        System.out.println(AdjList[0]);
-        System.out.println(AdjList[1]);
-        System.out.println(AdjList[2]);
-        System.out.println(AdjList[3]);
-        System.out.println(AdjList[4]);
+//
+//        System.out.println(AdjList[0]);
+//        System.out.println(AdjList[1]);
+//        System.out.println(AdjList[2]);
+//        System.out.println(AdjList[3]);
+//        System.out.println(AdjList[4]);
 
         // traversal for neighbours of source 0 -------------------------------------
         for(int i : AdjList[0]){
-            System.out.println("i " + i);
+//            System.out.println("i " + i);
             double w = w_matrix[0][i];
             Edge e = new Edge(0,0,0);
             e.dest = i;
             e.weight = w;
-            System.out.println("w " + w);
+//            System.out.println("w " + w);
             // all adjacent edges added
             Q.add(e);
         }
@@ -222,15 +222,15 @@ class MST {
             }
             // else pick this edge e
             total_W += e.weight;
-            System.out.println("total Weight: " + total_W);
+//            System.out.println("total Weight: " + total_W);
             //Pmst[index] = e;
 
             Q.poll(); // remove the smallest edge
-            System.out.println("Size of Q: "+ Q.size());
+//            System.out.println("Size of Q: "+ Q.size());
 
             if (!visited[e.dest]){
                 visited[e.dest] = true;
-                System.out.println("Now We Visit "+ e.dest);
+//                System.out.println("Now We Visit "+ e.dest);
 
                 for(int nbrs_dest :AdjList[e.dest]){
                     int src = Math.min(nbrs_dest,e.dest);
@@ -242,49 +242,49 @@ class MST {
                         e1.src = src;
                         e1.dest = dest;
                         e1.weight = w;
-                        System.out.println("New weight: "+ w);
+//                        System.out.println("New weight: "+ w);
                         // all adjacent edges added to Queue
                         Q.add(e1);
-                        System.out.println( "----------------------------");
+//                        System.out.println( "----------------------------");
 
-                        System.out.println("Size of Q: "+ Q.size());
+//                        System.out.println("Size of Q: "+ Q.size());
 
                         visited[e.src] = true;
                         visited[e.dest] = true;
 
-                        System.out.println(e1.toString());
+//                        System.out.println(e1.toString());
                     }
                 }
             }
             else{
-                System.out.println("Enter this ELSE");
+//                System.out.println("Enter this ELSE");
                 visited[e.src] = true;
-                System.out.println("Now We Visit THE SRC  "+ e.src);
+//                System.out.println("Now We Visit THE SRC  "+ e.src);
 
                 for(int nbrs_dest :AdjList[e.src]){
                     int src = Math.min(nbrs_dest,e.src);
                     int dest = Math.max(nbrs_dest,e.src);
                     double w = w_matrix[src][dest];
 
-                    if ((!visited[e.src] && visited[e.dest])|| (visited[e.src]&&!visited[e.dest])){
+                    if ((!visited[src] && visited[dest])|| (visited[src]&&!visited[dest])){
                         Edge e1 = new Edge(0,0,0);
                         e1.src = src;
                         e1.dest = dest;
                         e1.weight = w;
-                        System.out.println("New weight: "+ w);
+//                        System.out.println("New weight: "+ w);
 
                         // all adjacent edges added
                         Q.add(e1);
                         visited[e.src] = true;
                         visited[e.dest] = true;
-                        System.out.println("visit "+ e.src + " visit " + e.dest);
+//                        System.out.println("visit "+ e.src + " visit " + e.dest);
 
-                        System.out.println(e1.toString());
+//                        System.out.println(e1.toString());
                     }
                 }
             }
         }
-        System.out.println("WHETHER TERMINATE");
+        // System.out.println(" TERMINATE ");
 
         // check whether all vertices are visited -----------------------------------------------------
         for (int i = 1; i < N; i++){
@@ -314,7 +314,7 @@ class MST {
         double[] P_averWeight_Q1c = new double[5];
         long[] P_averRunTime_Q1c = new long[5];
 
-        int sizes[] = {500};
+        int sizes[] = {100,500,1000,5000};
 
         /** Q1_a Implementation begins----------------------------------------------------------
          */
@@ -381,7 +381,7 @@ class MST {
             double P_testWeight_Q1c = 0.0;
             long P_testTime_Q1c = (long) 0.0;
 
-            for (int d=0; d < 5; d++) { // repeated exp
+            for (int d=0; d < 50; d++) { // repeated exp
 
                 int N = sizes[s];// int E = N * (N - 1) / 2; // Upper boundary of the number of edges
 
@@ -492,12 +492,12 @@ class MST {
                     w_matrix[pickedEdges.get(e).src][pickedEdges.get(e).dest] = pickedEdges.get(e).weight;
                 }
 
-//                // Timing for Q1_c (Kruskal's algorithm)
-//                long K_startTime_Q1c = System.nanoTime();
-//                K_testWeight_Q1c += graph_c.KruskalMST();
-//                long K_endTime_Q1c = System.nanoTime();
-//                K_testTime_Q1c += (K_endTime_Q1c - K_startTime_Q1c);
-//
+                // Timing for Q1_c (Kruskal's algorithm)
+                long K_startTime_Q1c = System.nanoTime();
+                K_testWeight_Q1c += graph_c.KruskalMST();
+                long K_endTime_Q1c = System.nanoTime();
+                K_testTime_Q1c += (K_endTime_Q1c - K_startTime_Q1c);
+
                 // Timing for Q1_c (Prim's algorithm)
                 long P_startTime_Q1c = System.nanoTime();
                 P_testWeight_Q1c += graph_c.PrimMST(AdjList, w_matrix);
@@ -505,14 +505,14 @@ class MST {
                 P_testTime_Q1c += (P_endTime_Q1c - P_startTime_Q1c);
         }
 
-//            K_averWeight_Q1c[s] = K_testWeight_Q1c/50;
-//            K_averRunTime_Q1c[s] =  K_testTime_Q1c/50;
+            K_averWeight_Q1c[s] = K_testWeight_Q1c/50;
+            K_averRunTime_Q1c[s] =  K_testTime_Q1c/50;
 //
-            P_averWeight_Q1c[s] = P_testWeight_Q1c/5;
-            P_averRunTime_Q1c[s] =  P_testTime_Q1c/5;
+            P_averWeight_Q1c[s] = P_testWeight_Q1c/50;
+            P_averRunTime_Q1c[s] =  P_testTime_Q1c/50;
 
-//            System.out.println("Random Connected Graph Size: "+ sizes[s] + " Kruskal's average RunTime: "+ K_averRunTime_Q1c[s]);
-//            System.out.println("Random Connected Graph Size: "+ sizes[s] + " Kruskal's average Weight: "+ K_averWeight_Q1c[s]);
+            System.out.println("Random Connected Graph Size: "+ sizes[s] + " Kruskal's average RunTime: "+ K_averRunTime_Q1c[s]);
+            System.out.println("Random Connected Graph Size: "+ sizes[s] + " Kruskal's average Weight: "+ K_averWeight_Q1c[s]);
 
             System.out.println("Random Connected Graph Size: "+ sizes[s] + " Prim's average RunTime: "+ P_averRunTime_Q1c[s]);
             System.out.println("Random Connected Graph Size: "+ sizes[s] + " Prim's average Weight: "+ P_averWeight_Q1c[s]);
