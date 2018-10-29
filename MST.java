@@ -220,17 +220,6 @@ class MST {
     }
 
 
-    /** Helper Function for checking conectivity--------------------------------------------------------------------
-     */
-    Boolean checkConnectivity(){
-        return false;
-    }
-
-    void init(){
-
-    }
-
-
     /** Main Program --------------------------------------------------------------------------
      */
     public static void main (String[] args)
