@@ -1,6 +1,25 @@
 # alg_ass2
 
+## Running test for Q1_a
+
+Complete Graph Size: 100 with an average Weight: 6.766328812417876
+<br/>
+Complete Graph Size: 100 with an average RunTime: 3044968
+<br/>
+Complete Graph Size: 500 with an average Weight: 14.745542598210426
+<br/>
+Complete Graph Size: 500 with an average RunTime: 20506516
+<br/>
+Complete Graph Size: 1000 with an average Weight: 20.80189264506525
+<br/>
+Complete Graph Size: 1000 with an average RunTime: 97888969
+<br/>
+Complete Graph Size: 5000 with an average Weight: 46.124602784258386
+<br/>
+Complete Graph Size: 5000 with an average RunTime: 4409706667
+
 ## Running test for Q1_c
+
 Random Connected Graph Size: 100 Kruskal's average RunTime: 136527
 <br/>
 Random Connected Graph Size: 100 Kruskal's average Weight: 31.013871506746117
